@@ -7,3 +7,9 @@
 5. Series temporales
 6. Tendencias
 7. Datos geoespaciales
+
+## Referencias
+
+  * Claus O. Wilke. [Fundamentals of Data Visualization](https://serialmentor.com/dataviz/)
+  
+  * Kieran Healy. [Data Visualization: A practical introduction](https://socviz.co/)
