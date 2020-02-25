@@ -1,0 +1,35 @@
+---
+title: "Visualización de datos"
+subtitle: "Explotación y visualización"
+author: "Alberto Torres Barrán"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    css: ["default", "custom.css"]
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+      beforeInit: "macros.js"
+    includes:
+      before_body: mathjax.html
+    keep_md: true
+---
+
+```{r setup, include=FALSE}
+library(tidyverse)
+knitr::opts_chunk$set(echo = TRUE, 
+                      message = FALSE, 
+                      warning = FALSE, 
+                      fig.width = 8, 
+                      fig.height = 6, 
+                      collapse = TRUE)
+```
+
+
+## Características estéticas
+
+* Toda visualización es una correspondencia entre datos y características estéticas
+
+* Ejemplo: un gráfico de dispersión representa la relación entre dos variables, **x** e **y**, mediante puntos
