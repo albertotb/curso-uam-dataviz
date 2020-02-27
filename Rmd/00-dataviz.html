@@ -4,7 +4,7 @@
     <title>Visualización de datos</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alberto Torres Barrán" />
-    <meta name="date" content="2020-02-25" />
+    <meta name="date" content="2020-02-27" />
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
@@ -15,7 +15,7 @@ class: center, middle, inverse, title-slide
 # Visualización de datos
 ## Explotación y visualización
 ### Alberto Torres Barrán
-### 2020-02-25
+### 2020-02-27
 
 ---
 
@@ -38,14 +38,241 @@ MathJax.Hub.Config({
 
 
 
+## Gramática de gráficos
+
+* Descripción precisa de todos los componentes necesarios para realizar una visualización 
+
+  * Wilkinson, L. (2005), *The Grammar of Graphics*
+
+* Una de las implementaciones más conocidas es la librería `ggplot2`:
+
+    * Wickham, H. (2009), [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/)
+
+* Artículo con las implicaciones de trasladar los conceptos de la gramática de gráficos a un lenguaje de programación (R):
+
+    * Wickham, H. (2010), [*A Layered Grammar of Graphics*](https://vita.had.co.nz/papers/layered-grammar.pdf)
+
+
+---
+
+## Fundamentos de visualización de datos
+
+* Wilke, C. O., (2019) [Fundamentals of data visualization](https://serialmentor.com/dataviz/)
+
+* Guía moderna para realizar visualizaciones que:
+
+  1. reflejan los datos de forma precisa
+  
+  2. cuentan una historia
+  
+  3. tienen una estética profesional
+  
+* Conceptos independientes de la herramienta que se usa!
+
+* Los ejemplos del libro están hechos con `ggplot2` y otras librerías auxiliares
+
+* Referencia principal de esta sesión (material en [Github](albertotb.com/))
+
+---
+
+class: inverse, center, middle
 
 # Visualización de datos
+
+---
 
 ## Características estéticas
 
 * Toda visualización es una correspondencia entre datos y características estéticas
 
 * Ejemplo: un gráfico de dispersión representa la relación entre dos variables, **x** e **y**, mediante puntos
+
+* Dos tipos:
+
+  1. pueden representar datos continuos
+  
+  2. **no** pueden representar datos continuos
+  
+---
+
+## Ejemplos
+
+![:vspace 4]
+
+.center[
+![](img/common-aesthetics-1.png)
+]
+
+---
+
+## Tipos de datos
+
+* Independientes del lenguaje de programación/herramienta!
+
+  1. **Numéricos continuos**: números decimales
+  
+  2. **Numéricos discretos**: por ej. números enteros
+  
+  3. **Categóricos**: con o sin orden, por ej. las CC.AA de España
+  
+  4. **Fechas/horas**: pueden ser continuos o discretos dependiendo de lo que representen
+  
+  5. **Texto**
+
+
+---
+
+## Ejemplo
+
+¿Qué tipos de datos hay en la siguiente tabla?
+
+
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Fecha y hora &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Temperatura (ºC) &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Viento (km/h) &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Dirección del viento &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Estacion &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 00:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Noroeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 01:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Oeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 02:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Oeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 03:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Oeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 04:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 5.9 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 3 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Oeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 05:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Calma &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 06:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.2 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Sudoeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 07:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 4.6 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Calma &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 08:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 6 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Oeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 09:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 7.3 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 13 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Oeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; 27/02/2020 10:00 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 9.4 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 11 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Oeste &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; El Goloso &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+.center[
+Fuente: [AEMET](http://www.aemet.es/es/eltiempo/observacion/ultimosdatos)
+]
+
+---
+
+## Escalas
+
+* Definen la equivalencia entre valores y elementos del gráfico
+
+* Correspondencia 1 a 1 para evitar gráficos ambiguos
+
+![:vspace 3]
+
+.center[
+![](img/basic-scales-example-1.png)
+]
+
+---
+
+## Ejemplo gráfico de líneas
+
+.center[
+![](img/temp-normals-vs-time-1.png)
+]
+---
+
+## Ejemplo *heatmap*
+
+![:vspace 8]
+
+.center[
+![](img/four-locations-temps-by-month-1.png)
+]
+
+---
+
+## Múltiples escalas
+
+¿Cuántas escalas tiene el siguiente gráfico?
+
+.center[
+![:scale 75%](img/mtcars-five-scale-1.png)
+]
+
+---
+
+class: inverse, center, middle
+
+# Sistemas de coordenadas y ejes
+
+---
+
+## Sistemas de coordenadas
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
