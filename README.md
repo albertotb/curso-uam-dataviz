@@ -1,6 +1,6 @@
 # Visualización de datos
 
-Presentación [[HTML](./Rmd/00-dataviz.html)][[PDF](./pdf/visualizacion_datos.pdf)]
+Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.pdf)]
 
 ## Contenidos
 

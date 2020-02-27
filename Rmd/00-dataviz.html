@@ -274,6 +274,331 @@ class: inverse, center, middle
 ---
 
 ## Sistemas de coordenadas
+
+* Necesarios para cualquier tipo de visualización
+
+* Determinan donde se van a posicionar los distintos valores
+
+* Para gráficos estándar en 2D, necesitamos 2 valores para identificar una posición
+
+* Además también necesitamos especificar la distribución relativa
+
+* **Sistema de coordenadas**: combinación de escalas de posición y su distribución relativa
+
+---
+
+## Coordenadas cartesianas
+
+* Sistema de coordenadas más habitual
+
+* Dos ejes ortogonales con escalas continuas, **x** e **y**
+
+* Invariantes frente a transformaciones lineales
+
+.center[
+![:scale 60%](img/cartesian-coord-1.png)
+]
+
+---
+
+## Ejemplo
+
+.center[
+![:scale 90%](img/temperature-normals-Houston-1.png)
+]
+
+---
+
+## Ejes lineales vs no lineales
+
+* **Eje lineal**: la separación entre dos líneas de la rejilla es la misma en la visualización que en las unidades de los datos
+
+* **Eje no lineal**: la distancia entre dos líneas de la rejilla no es proporcional a la separación en las unidades de los datos
+
+![:vspace 0.5]
+
+.center[
+![:scale 80%](img/linear-log-scales-1.png)
+]
+
+---
+
+## Escala logaritmica
+
+* Escala no lineal más común
+
+* Multiplicar en la escala logarítmica es como sumar en la escala lineal
+
+* Conveniente para datos que provienen de multiplicaciones/divisiones, por ej. ratios
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:right;"&gt; poblacion &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; media &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; ratio &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 50 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0.5 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1.0 &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:right;"&gt; 200 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 100 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 2.0 &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+![:vspace 3]
+
+&lt;img src="00-dataviz_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" /&gt;
+
+---
+
+## Otras escalas
+
+* Escala logarítmica es también útil cuando hay datos con magnitudes muy diferentes
+  * Representar en una misma escala una ciudad con población 100 y otra con población 1M
+  
+* Problema: no puede haber 0 en la escala logarítimica (`log(0) = -inf`)
+
+* En algunos casos pueden ser útiles otras transformaciones, por ej. la raíz cuadrada
+
+---
+
+## Ejemplo
+
+![:vspace 7]
+
+.center[
+![](img/northeast-state-areas-1.png)
+]
+
+---
+
+## Sistemas de coordenadas  curvos
+
+* Las coordenadas polares son el ejemplo más común
+
+* Especificamos una posición usando un ángulo y una distancia radial al origen
+
+* Útiles para datos con periodicidad intrínseca
+
+![:vspace 2]
+
+.center[
+![:scale 80%](img/polar-coord-1.png)
+]
+
+---
+
+## Ejemplo
+
+.center[
+![](img/temperature-normals-polar-1.png)
+]
+
+---
+
+## Datos geográficos
+
+![](img/worldmap-four-projections-1.png)
+
+---
+
+## Otro ejemplo
+
+.center[
+![:scale 90%](img/mtcars_polar.png)
+
+Fuente: [ggradar](https://www.ggplot2-exts.org/ggradar.html)
+]
+
+
+---
+
+## Otro (mal) ejemplo
+
+.center[
+![:scale 80%](img/dia_polar.png)
+
+Fuente: [Radar Plots usando ggplot2](https://rpubs.com/htejero/212368)
+]
+
+---
+
+class: inverse, middle, center
+
+# Escalas de color
+
+---
+
+## Escalas de color cualitativas
+
+* En variables categóricas, usamos el color para distinguir grupos que no tienen ningún orden
+
+* Características deseables:
+
+  1. claramente **distinguibles** unos de otros
+  
+  2. **equivalentes**  
+     * ningún color puede destacar sobre el resto
+  
+  3. distinguibles incluso para personas **daltónicas**
+
+---
+
+## Ejemplos
+
+* Se pueden crear escalas personalizadas en la web [ColorBrewer 2.0](http://colorbrewer2.org/)
+
+* También hay muchas disponibles:
+    
+  ![:scale 75%](img/qualitative-scales-1.png)
+
+* A no ser que exista alguna razón de peso (por ej. colores corporativos), siempre es recomendable usar una de las múltiples escalas por defecto
+
+* Muchas fueron creadas para cumplir las propiedades anteriores:
+  
+  * .footnotesize[Okabe, M., and K. Ito. (2008), [Color Universal Design (CUD): How to Make Figures and Presentations That Are Friendly to Colorblind People.](https://jfly.uni-koeln.de/color/)]
+
+
+
+---
+
+## Escalas de color secuenciales
+
+* Con variables continuas, usamos escalas de color secuenciales
+
+* Revelan patrones en nuestros datos que sería muy complicado ver de otra forma
+
+* Simplifican a nuestro cerebro la tarea de procesar...
+  
+  * ...que valores son más pequeños que otros
+  * ...distancia entre valores
+  
+* Características deseables [[A better default colormap for matplotlib](https://www.youtube.com/watch?v=xAoljeRJ3lU)]:
+
+  1. colorida
+  
+  2. agradable
+  
+  3. **secuencial**
+  
+  4. **perceptualmente uniforme**
+  
+  5. distinguible en **blanco y negro**
+  
+  6. accesible para personas **daltónicas**
+
+---
+
+## viridis
+
+![](img/viridis.png)
+
+.center[Fuente: [mpl colormaps](https://bids.github.io/colormap/)]
+
+---
+
+## Secuenciales vs divergentes
+
+.center[
+![:scale 70%](img/sequential-scales-1.png)
+]
+
+--
+
+![:vspace 0.5]
+
+.center[
+![:scale 70%](img/diverging-scales-1.png)
+]
+
+---
+
+## Ejemplo secuencial
+
+.center[
+![:scale 90%](img/map-Texas-income-1.png)
+]
+
+---
+
+## Ejemplo divergente
+
+.center[
+![:scale 90%](img/map-Texas-race-1.png)
+]
+
+---
+
+## Destacar elementos usando color
+
+* Las escalas de color qualitativas se pueden modificar para resaltar ciertos grupos:
+
+  * creando versiones más oscuras y/o saturadas de algunos colores
+  
+  * combinando una escala de grises + color
+
+* Importante que ninguno de los colores no-resaltados destaque sobre el resto!
+
+.center[
+![:scale 75%](img/accent-scales-1.png)
+]
+
+* Otra opción es eliminar todo el color excepto el de los datos a resaltar
+
+---
+
+## Ejemplo resaltado
+
+.center[
+![](img/Aus-athletes-track-1.png)
+]
+
+---
+
+class: inverse, middle, center
+
+# Tipos de gráficos
+
+---
+
+## Cantidades
+
+---
+
+## Distribuciones
+
+---
+
+## Proporciones
+
+---
+
+## Asociaciones de variables cuantitativas
+
+---
+
+## Series temporales
+
+---
+
+## Tendencias
+
+---
+
+## Datos geoespaciales
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
