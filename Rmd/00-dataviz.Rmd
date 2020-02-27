@@ -17,6 +17,7 @@ output:
     keep_md: true
 ---
 
+
 ```{r setup, include=FALSE}
 library(tidyverse)
 library(knitr)
@@ -62,7 +63,7 @@ knitr::opts_chunk$set(echo = TRUE,
 
 * Los ejemplos del libro están hechos con `ggplot2` y otras librerías auxiliares
 
-* Referencia principal de esta sesión (material en [Github](albertotb.com/))
+* Referencia principal de esta sesión (material en [Github](http://albertotb.com/curso-uam-dataviz/))
 
 ---
 
