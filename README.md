@@ -8,7 +8,7 @@ Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.p
 
 2. Visualizando datos
 
-3. Sistemas de coordenadas y ejes
+3. Sistemas de coordenadas
 
 4. Color
 
@@ -17,7 +17,7 @@ Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.p
    * Cantidades
    * Distribuciones
    * Proporciones
-   * Asociaciones variables cuantitativas
+   * Asociaciones de variables cuantitativas
    * Series temporales
    * Tendencias
    * Datos geoespaciales
