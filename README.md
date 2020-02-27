@@ -14,13 +14,13 @@ Presentación [[HTML](./Rmd/00-dataviz.html)][[PDF](./pdf/visualizacion_datos.pd
 
 5. Tipos de visualizaciones
 
-  * Cantidades
-  * Distribuciones
-  * Proporciones
-  * Asociaciones variables cuantitativas
-  * Series temporales
-  * Tendencias
-  * Datos geoespaciales
+   * Cantidades
+   * Distribuciones
+   * Proporciones
+   * Asociaciones variables cuantitativas
+   * Series temporales
+   * Tendencias
+   * Datos geoespaciales
 
 ## Referencias
 
