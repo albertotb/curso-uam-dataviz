@@ -848,6 +848,99 @@ Si queremos representar las de dos los gráficos de densidad suelen ser preferib
 
 ---
 
+## Gráfico de cajas
+
+Represente los principales estadísticos de una variable continua
+
+.center[
+![:scale 80%](img/boxplot-schematic-1.png)
+]
+
+---
+
+class: center, middle
+![](img/lincoln-temp-boxplots-1.png)
+
+---
+
+.center[
+![](img/lincoln-temp-points-errorbars-1.png)
+]
+
+--
+
+Generalmente las barras verticales se usan para representar errores, no variabilidad en los datos (distribución)
+
+---
+
+## Gráficos "violín"
+
+* Alternativa a los gráficos de cajas si hay un número de puntos suficientemente alto
+
+* Se estima la densidad usando KDE, se rota 90 grados y se replica
+
+![:scale 80%](img/violin-schematic-1.png)
+
+---
+
+Las desventajas son las mismas que los gráficos de densidad:
+  
+  * Pueden representar datos en zonas donde no los hay
+  
+  * Perdemos la noción de la cantidad de puntos
+
+.center[
+![](img/lincoln-temp-violins-1.png)
+]
+
+---
+
+class: middle
+
+.center[
+![](img/seaborn-library-data-visualization-python-part-1-16.png)
+
+.footnotesize[Fuente: [Seaborn Library for Data Visualization in Python: Part 1](https://stackabuse.com/seaborn-library-for-data-visualization-in-python-part-1/)]
+]
+
+---
+
+## *Strip chart*
+
+Si no hay muchos puntos, podemos representarlos directamente
+
+![:scale 90%](img/lincoln-temp-all-points-1.png)
+
+---
+
+## Ruido aleatorio
+
+Generalmente es útil añadir un pequeño ruido aleatorio para que no se superpongan los puntos
+
+![:scale 90%](img/lincoln-temp-jittered-1.png)
+
+---
+
+class: middle
+
+.center[
+![](img/seaborn-library-data-visualization-python-part-1-20.png)
+
+.footnotesize[Fuente: [Seaborn Library for Data Visualization in Python: Part 1](https://stackabuse.com/seaborn-library-for-data-visualization-in-python-part-1/)]
+]
+
+---
+
+## *Ridgeline plot*
+
+* Distribución de una variable continua para distintos grupos
+
+* Similar al gráfico "violín", pero rotado
+
+![:scale 85%](img/temp-ridgeline-1.png)
+
+---
+
 class: inverse, middle, center
 
 # Proporciones
