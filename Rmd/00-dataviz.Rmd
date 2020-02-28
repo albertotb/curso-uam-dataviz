@@ -23,11 +23,12 @@ library(tidyverse)
 library(knitr)
 library(kableExtra)
 library(dviz.supp)
-knitr::opts_chunk$set(echo = TRUE, 
+knitr::opts_chunk$set(echo = FALSE, 
                       message = FALSE, 
                       warning = FALSE, 
                       fig.width = 8, 
-                      fig.height = 6, 
+                      fig.height = 6,
+                      fig.align = "center",
                       collapse = TRUE)
 ```
 
@@ -90,6 +91,7 @@ class: inverse, center, middle
 
 ## Ejemplos
 
+¿Cuáles de los siguientes elementos **no** pueden representar datos continuos?
 ![:vspace 4]
 
 .center[
@@ -281,6 +283,12 @@ plot_grid(plotlist[[1]], plotlist[[2]], ncol = 1)
 
 ---
 
+## Ejemplo
+
+![](img/oceania-gdp-relative-1.png)
+
+---
+
 ## Otras escalas
 
 * Escala logarítmica es también útil cuando hay datos con magnitudes muy diferentes
@@ -406,17 +414,13 @@ class: inverse, middle, center
 * Características deseables [[A better default colormap for matplotlib](https://www.youtube.com/watch?v=xAoljeRJ3lU)]:
 
   1. colorida
-  
   2. agradable
-  
   3. **secuencial**
-  
   4. **perceptualmente uniforme**
-  
   5. distinguible en **blanco y negro**
-  
   6. accesible para personas **daltónicas**
 
+* Una escala de color muy usada es [viridis](https://cran.r-project.org/web/packages/viridis/vignettes/intro-to-viridis.html)
 ---
 
 ## viridis
@@ -487,32 +491,750 @@ class: inverse, middle, center
 
 class: inverse, middle, center
 
-# Tipos de gráficos
+# Cantidades
 
 ---
 
 ## Cantidades
 
+* Valores numéricos para un conjunto de categorías
+
+* Énfasis: magnitud de los valores
+
+* Tipos de gráfico:
+
+  1. gráfico de barras (*barplot*)
+  
+  2. gráfico de puntos (*dotplot*)
+  
+  3. mapas de calor (*heatmap*)
+  
 ---
+
+## Gráfico de barras
+
+```{r echo=FALSE}
+pew <-
+  relig_income %>%
+    pivot_longer(-religion, names_to = 'income', values_to = 'n_per')
+```
+
+```{r}
+# Repetir el gráfico para las 5 anteriores
+plot_pew <-
+  pew %>%
+    mutate(religion = fct_lump(religion, n = 6, w = n_per)) %>%
+    ggplot(aes(x = religion, y = n_per)) +
+    geom_col() + 
+    labs(y = "Número de personas", x = "Religión")
+
+plot_pew + theme_dviz_grid()
+```
+
+---
+
+## Etiquetas rotadas
+
+```{r}
+plot_pew + theme_dviz_grid() + theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+---
+
+## Intercambiar ejes
+
+```{r}
+plot_pew + coord_flip() + theme_dviz_grid()
+```
+
+---
+
+## Orden de las categorias
+
+```{r}
+pew %>%
+  mutate(religion = fct_reorder(
+    fct_lump(religion, n = 5, w = n_per), 
+    n_per, .fun=sum)) %>%
+  ggplot(aes(x = religion, y = n_per)) +
+  geom_col() + 
+  labs(y = "Número de personas", x = "Religión") + 
+  coord_flip() + theme_dviz_grid()
+```
+
+---
+
+## Variables cualitativas con orden
+
+No usar orden alfabético ni orden creciente, sino el orden implícito de la variable
+
+```{r}
+pew %>%
+  filter(income != "Don't know/refused") %>%
+  ggplot(aes(x = income, y = n_per)) + geom_col() +
+  labs(x = "Salario", y = "Número de personas") + theme_dviz_grid()
+```
+
+---
+
+class: center, middle
+
+```{r fig.width=10, fig.height=8}
+pew %>%
+  mutate(income = fct_reorder(income, n_per, .fun=sum)) %>%
+  filter(income != "Don't know/refused") %>%
+  ggplot(aes(x = income, y = n_per)) + geom_col() +
+  labs(x = "Salario", y = "Número de personas") + theme_dviz_grid()
+```
+
+---
+
+```{r fig.width=10, fig.height=8}
+pew %>%
+  mutate(income = fct_relevel(income, "<$10k"),
+         income = fct_relevel(income, "$100-150k", after = 7)) %>%
+  filter(income != "Don't know/refused") %>%
+  ggplot(aes(x = income, y = n_per)) + geom_col() +
+  labs(x = "Salario", y = "Número de personas") + theme_dviz_grid()
+```
+
+---
+
+## Gráfico de barras agrupadas
+
+```{r}
+pew_tidy <-
+pew %>%
+  mutate(income = fct_relevel(income, "<$10k"),
+         income = fct_relevel(income, "$100-150k", after = 7), 
+         religion = fct_lump(religion, n = 5, w = n_per),
+         religion = fct_reorder(religion, n_per, .fun=sum)) %>%
+  filter(income != "Don't know/refused")
+```
+
+```{r fig.width=12}
+pew_tidy %>%
+  ggplot(aes(x = income, y = n_per, fill = religion)) + 
+  geom_col(position = "dodge") + 
+  scale_fill_OkabeIto() +
+  labs(x = "Salario", y = "Número personas", fill = "Religión") + theme_dviz_grid()
+```
+
+---
+
+class: center, middle
+
+```{r fig.width=10, fig.height=8}
+library(viridis)
+pew_tidy %>%
+  ggplot(aes(x = religion, y = n_per, fill = income)) + 
+  geom_col(position = "dodge") + 
+  scale_fill_viridis(discrete=TRUE) + 
+  labs(x = "Religión", y = "Número personas", fill = "Salario") + theme_dviz_grid()
+```
+
+---
+
+## Facetas
+
+```{r}
+pew_tidy %>%
+  ggplot(aes(x = income, y = n_per)) + 
+  geom_col(position = "dodge") + 
+  labs(x = "Salario", y = "Número personas") + 
+  facet_wrap(~religion) + coord_flip() + theme_dviz_grid()
+```
+
+---
+
+## Barras apiladas
+
+* Útiles cuando las cantidades que representan por las barras apiladas es significativa
+
+* Por ejemplo, número de personas
+
+.center[
+![:scale 80%](img/titanic-passengers-by-class-sex-1.png)
+]
+
+---
+
+## Gráfico de puntos
+
+En ocasiones podemos sustituir las barras por un únic punto
+
+```{r}
+library(gapminder)
+gapminder %>%
+  filter(continent == "Europe", year == 2007) %>%
+  ggplot(aes(x = lifeExp, y = fct_reorder(country, lifeExp))) + 
+  geom_point() + 
+  labs(x = "Esperanza de vida (años)", y = "País") + theme_dviz_grid()
+```
+
+---
+
+Si lo representáramos con barras, como el eje tiene que empezar en 0, el gráfico quedaría muy cargado
+
+```{r}
+gapminder %>%
+  filter(continent == "Europe", year == 2007) %>%
+  ggplot(aes(x = fct_reorder(country, lifeExp), y = lifeExp)) + 
+  geom_col() + 
+  coord_flip() +
+  labs(y = "Esperanza de vida (años)", x = "País") + theme_dviz_grid()
+```
+
+---
+
+## Gráficos de barras: ejes
+
+La cantidad de tinta debería de ser proporcional a la cantidad que se representa
+
+.center[
+![:scale 85%](img/hawaii-income-bars-bad-1.png)
+]
+
+---
+
+En una escala lineal las barras siempre tienen que empezar en 0!!
+
+.center[
+![:scale 85%](img/hawaii-income-bars-good-1.png)
+]
+
+---
+
+## Mapas de calor (*heatmap*)
+
+Enfatizan los patrones globales en lugar de los valores concretos
+
+.center[
+![:scale 95%](img/internet-over-time-1.png)
+]
+
+---
+
+El orden es arbitrario
+
+.center[
+![:scale 95%](img/internet-over-time2-1.png)
+]
+
+---
+
+class: inverse, middle, center
 
 ## Distribuciones
 
 ---
 
-## Proporciones
+## Histogramas
+
+* Representan la distribución de una variable numérica continua (quantitativa)
+
+```{r}
+library(titanic)
+
+age_counts <- hist(titanic$age, breaks = (0:15) * 5 + .01, plot = FALSE)$counts
+age_hist <- data.frame(
+  `age range` = c("0--5", "6--10", "11--15", "16--20", "21--25", "26--30", "31--35", "36--40", "41--45", "46--50", "51--55", "56--60", "61--65", "66--70", "71--75"),
+  count = age_counts,
+  check.names = FALSE
+)
+age_hist <- cbind(age_hist, age = (1:15) * 5 - 2.5)
+```
+
+```{r}
+ggplot(age_hist, aes(x = age, y = count)) + 
+  geom_col(width = 4.7, fill = "#56B4E9") + 
+  scale_x_continuous(name = "Edad (años)", limits = c(0, 75)) + theme_dviz_grid()
+```
 
 ---
 
-## Asociaciones de variables cuantitativas
+## Elección número de intervalos
+
+* Siempre hay que probar con distintos tamaños de intervalo!
+
+.center[
+![](img/titanic-ages-hist-grid-1.png)
+]
 
 ---
 
-## Series temporales
+## Gráficos de densidad
+
+* Estiman la densidad (distribución) de la variable usando una técnica conocidad como *Kernel Density Estimation* (KDE)
+
+* Cuidado con el rango del eje x!
+
+```{r, fig.height=5}
+library(ggridges)
+ggplot(titanic, aes(x = age)) + 
+  geom_density_line(fill = "#56B4E9", color = darken("#56B4E9", 0.5), bw = 2, kernel = "gaussian") + 
+  scale_y_continuous(limits = c(0, 0.04), name = "Densidad") +
+  scale_x_continuous(name = "Edad (años)", limits = c(0, 75)) + theme_dviz_grid()
+```
+
+---
+
+## Ancho del kernel
+
+* Igual que en los historgramas la elección del ancho del kernel influye en los resultados
+
+.center[
+![](img/titanic-ages-dens-grid-1.png)
+]
+
+.footnotesize[
+a) kernel Gaussiano, ancho = 0.5
+b) kernel Gaussiano, ancho = 2
+c) kernel Gaussiano, ancho = 5
+d) kernel rectangular, ancho = 2
+]
+
+---
+
+## Dos distribuciones
+
+Los histogramas tienen problemas a la hora de mostrar múltiples distribuciones
+
+.center[
+![:scale 90%](img/titanic-age-stacked-hist-1.png)
+]
+
+---
+
+## Transparencias
+
+.center[
+![:scale 90%](img/titanic-age-overlapping-hist-1.png)
+]
+
+---
+
+## Gráficos de densidad solapados
+
+.center[
+![:scale 90%](img/titanic-age-overlapping-dens-1.png)
+]
+
+---
+
+## Gráficos de densidad: facetas
+
+.center[
+![](img/titanic-age-fractional-dens-1.png)
+]
+
+---
+
+## Histograma doble rotado
+
+.center[
+![](img/titanic-age-pyramid-1.png)
+]
+
+---
+
+# Más de dos distribuciones
+
+Si queremos representar las de dos los gráficos de densidad suelen ser preferibles a los histogramas
+
+.center[
+![:scale 90%](img/butterfat-densitites-1.png)
+]
+
+---
+
+class: inverse, middle, center
+
+# Proporciones
+
+---
+
+## Gráficos circulares
+
+.pull-left[
+Ventajas:
+ * Visualiza claramente las proporciones como parte de un conjunto
+ * Visualiza fracciones como 1/2, 1/3,..
+
+Desventajas:
+ * Complicado comparar visualmente las proporciones relativas
+]
+
+.pull-right[
+![](img/bundestag-pie-1.png)
+]
+
+---
+
+## Gráficos de barras apilados
+
+* Otra alternativa a los gráficos circulares
+* Fracciones como 1/2, 1/3, etc. no son evidente de forma visual
+
+.center[
+![:scale 90%](img/bundestag-stacked-bars-1.png)
+]
+
+---
+
+## Gráficos de barras
+
+Permiten visualizar de forma sencilla las proporciones relativas
+
+.center[
+![:scale 75%](img/bundestag-bars-side-by-side-1.png)
+]
+
+---
+
+## Otro ejemplo
+
+Gráfico circular
+
+.center[
+![](img/marketshare-pies-1.png)
+]
+
+--
+
+* No se pueden distinguir las diferencias entre grupos
+
+* No se pueden distinguir las diferencias entre años
+
+---
+
+Gráfico de barras apiladas
+
+.center[
+![](img/marketshare-stacked-1.png)
+]
+
+--
+
+Excepto para los grupos A y E, no podemos compararlos visualmente
+
+---
+
+Gráfico de barras
+
+.center[
+![](img/marketshare-side-by-side-1.png)
+]
+
+---
+
+Al igual que en los gráficos de barras que representan cantidades, el eje y tiene que empezar siempre en 0
+
+.center[
+![](img/bar-chart-not-0.png)
+
+.footnotesize[Fuente: [A Quick Guide to Spotting Graphics That Lie](https://www.nationalgeographic.com/news/2015/06/150619-data-points-five-ways-to-lie-with-charts/)]
+]
+
+---
+
+## Gráficos de barras apilados (dos categorías)
+
+Si solo hay dos categorías, no tenemos problema con los valores intermedios
+
+.center[
+![:scale 90%](img/women-parliament-1.png)
+]
+
+---
+
+## Gráficos de densidad apilados
+
+* Si la variable es continua, podemos usar en su lugar un gráfico de densidad apilado
+
+* No tenemos renferencia de los valores absolutos!
+
+.center[
+![](img/health-vs-age-1.png)
+]
+
+---
+
+class: inverse, middle, center
+
+# Asociaciones de variables cuantitativas
+
+---
+
+## Gráfico de dispersión
+
+Gráfico de puntos que representa 2 variables numéricas continuas
+
+.center[
+![:scale 75%](img/blue-jays-scatter-1.png)
+]
+
+---
+
+## Más de dos variables
+
+Podemos representar una tercera variable (continua o discreta) usando el color con una escala apropiada
+
+.center[
+![:scale 70%](img/blue-jays-scatter-sex-1.png)
+]
+
+---
+
+## Facetas
+
+* Podemos usar también otros elementos estéticos del gráfico, como el tamaño de los puntos o su forma
+
+* Si el gráfico está muy cargado, es conveniente separarlo en varios sub-gráficos (facetas)
+
+.center[
+![](img/blue-jays-scatter-bubbles-1.png)
+]
+
+---
+
+## Gráfico de pares
+
+Si tenemos más de dos variables cuantitativas, es común representar todos los pares posibles:
+
+.center[
+![:scale 75%](img/blue-jays-scatter-all-1.png)
+]
+
+---
+
+.center[
+![:scale 80%](img/seaborn-pairplot-2.png)
+
+.footnotesize[Fuente: [seaborn.pairplot](https://seaborn.pydata.org/generated/seaborn.pairplot.html)]
+]
+
+---
+
+## Correlogramas
+
+* Para más de 3 o 4 variables, representar un gráfico de dispersión para cada uno de los pares posibles es complicado
+
+* Una opción es resumir cada gráfico de dispersión calculando la correlación de las dos variables y representar ese valor
+
+.center[
+![:scale 70%](img/correlations-1.png)
+]
+
+---
+
+## Ejemplo
+
+* Útil usar escala de color divergente
+
+* Generalmente los límites son [-1, 1]
+
+.center[
+![:scale 50%](img/forensic-correlations1-1.png)
+]
+
+---
+
+## Otro ejemplo
+
+* Enfatizar correlaciones altas
+
+.center[
+![:scale 50%](img/forensic-correlations2-1.png)
+]
+
+---
+
+## Reducción de dimensionalidad
+
+.center[
+![:scale 75%](img/tsne_mnist.png)
+
+.footnotesize[Fuente: [Teaching R how to see numbers](https://rpubs.com/linalu/digit_recognizer)]
+]
+
+---
+
+class: inverse, middle, center
+
+# Series temporales y tendencias
+
+---
+
+## Una serie temporal
+
+Podemos utilizar puntos, pero la diferencia es que el eje x representa tiempo y por tanto están ordenados
+
+.center[
+![:scale 85%](img/biorxiv-dots-1.png)
+]
+
+---
+
+A menudo se combinan con lineas para enfatizar la dependencia temporal
+
+.center[
+![:scale 85%](img/biorxiv-dots-line-1.png)
+]
+
+---
+
+* Si los datos tienen una frecuencia temporal alta, podemos eliminar los puntos
+
+* Importante tener en cuenta que las líneas representan datos inventados!
+
+.center[
+![:scale 85%](img/biorxiv-line-1.png)
+]
+
+---
+
+**Solo** si el eje y empieza en 0, podemos colorear el area bajo la curva
+
+.center[
+![:scale 85%](img/biorxiv-line-area-1.png)
+]
+
+---
+
+class: middle
+
+.center[
+![:scale 85%](img/fb-stock-drop-bad-1.png)
+]
+
+---
+
+class: middle
+
+.center[
+![:scale 85%](img/fb-stock-drop-good-1.png)
+]
+
+---
+
+Hay que tener cuidado con las escalas!
+
+.center[
+![](img/line-chart-not-0.png)
+
+.footnotesize[Fuente: [A Quick Guide to Spotting Graphics That Lie](https://www.nationalgeographic.com/news/2015/06/150619-data-points-five-ways-to-lie-with-charts/)]
+]
+
+---
+
+## Multiples series temporales
+
+.center[
+![:scale 90%](img/bio-preprints-dots-1.png)
+]
+
+---
+
+class: middle
+
+.center[
+![:scale 90%](img/bio-preprints-lines-1.png)
+]
+
+---
+
+* Siempre que sea posible, es conveniente etiquetar directamente el gráfico
+
+* Sobre todo si hay un número elevado de categorías (8+)
+
+.center[
+![:scale 90%](img/bio-preprints-direct-label-1.png)
+]
+
+---
+
+## Gráficos de líneas
+
+Útiles siempre que el eje x tenga un orden implícito, aunque no represente tiempo
+
+.center[
+![:scale 90%](img/oats-yield-1.png)
+]
+
+---
+
+## Múltiples series temporales con distintas unidades
+
+.center[
+![:scale 90%](img/house-price-unemploy-1.png)
+]
+
+---
+
+Nunca usar dos escalas distintas en el mismo gráfico!
+
+.center[
+![](img/differente_scales.png)
+
+.footnotesize[Fuente: [A Quick Guide to Spotting Graphics That Lie](https://www.nationalgeographic.com/news/2015/06/150619-data-points-five-ways-to-lie-with-charts/)]
+]
 
 ---
 
 ## Tendencias
 
+* Existen distintos métodos de suavizado para representar la tendencia
+
+* Uno de los más populares es LOESS (*locally estimated scatterplot smoothing*)
+
+.center[
+![:scale 90%](img/dow-jones-loess-1.png)
+]
+
 ---
 
-## Datos geoespaciales
+También es útil usar estos métodos de suavizado en gráficos de dispersión
+
+.center[
+![:scale 85%](img/tank-capacity-loess-1.png)
+]
+
+---
+
+## Funciones de suavizado
+
+Cuidado al interpretar los datos suavizados, pueden cambiar bastante dependiendo del método!
+
+.center[
+![:scale 75%](img/tank-capacity-smoothers-1.png)
+]
+
+---
+
+## Regresión lineal
+
+Es muy común superponer la recta de regresión para comprobar visualmente si dos variables tienen relación lineal
+
+.center[
+![:scale 70%](img/blue-jays-scatter-line-1.png)
+]
+
+---
+
+## Ratio datos-tinta
+
+* Concepto introducido por Edward Tufte en 1983
+
+* Consiste en maximizar la proporción de los elementos estéticos del gráfico que se usan para visualizar datos
+
+.center[
+<iframe width="560" height="315" src="https://www.youtube.com/embed/bDbJBWvonVI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+]
+
+---
+
+.center[
+![](img/data-ink.gif)
+]
+

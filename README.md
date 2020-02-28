@@ -18,9 +18,7 @@ Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.p
    * Distribuciones
    * Proporciones
    * Asociaciones de variables cuantitativas
-   * Series temporales
-   * Tendencias
-   * Datos geoespaciales
+   * Series temporales y tendencias
 
 ## Referencias
 
@@ -30,3 +28,8 @@ Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.p
   * Hadley Wickham. [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/)
   * Leland Wilkinson. [The Grammar of Graphics](https://www.springer.com/gp/book/9780387245447)
   
+## Recursos
+
+  * [Practical ggplot2](https://wilkelab.org/practicalgg/)
+  * [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/data-viz-course-material.html)
+  * [From Data to Viz](https://www.data-to-viz.com/)
