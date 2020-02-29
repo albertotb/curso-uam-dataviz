@@ -32,6 +32,28 @@ knitr::opts_chunk$set(echo = FALSE,
                       collapse = TRUE)
 ```
 
+## Introducción
+
+* Visualizar datos es mitad ciencia mitad arte
+
+* Una buena visualización:
+
+  1. representa los datos de forma correcta
+  
+  2. es estéticamente agradable, sin elementos que distraigan del mensaje principal que queremos transmitir
+  
+* Se han visto al menos dos herramientas para realizar gráficos: matplotlib y ggplot2
+
+* En esta sesión:
+
+  1. como pasar de los datos al tipo de gráfico más adecuado
+
+  2. directorio con los tipos de gráficos más comunes (no todos!)
+  
+  3. conceptos independientes de la herramienta concreta 
+
+---
+
 ## Gramática de gráficos
 
 * Descripción precisa de todos los componentes necesarios para realizar una visualización 
@@ -431,6 +453,26 @@ class: inverse, middle, center
 
 ---
 
+## jet vs viridis
+
+.pull-left[
+.center[
+![:scale 80%](img/mona-lisa-rainbow.png)
+]
+]
+
+--
+
+.pull-right[
+.center[
+![:scale 80%](img/mona-lisa-gradient.png)
+]
+]
+
+.center[.footnotesize[Fuente: [Hurricanes and Data Visualisation: Part I(b) – The Mona Lisa](https://peterjamesthomas.com/2017/09/15/hurricanes-and-data-visualisation-part-ib-the-mona-lisa/)]]
+
+---
+
 ## Secuenciales vs divergentes
 
 .center[
@@ -602,6 +644,7 @@ pew %>%
 
 ## Gráfico de barras agrupadas
 
+¿Cómo ordenar las barras?
 ```{r}
 pew_tidy <-
 pew %>%
@@ -1315,9 +1358,37 @@ Es muy común superponer la recta de regresión para comprobar visualmente si do
 
 ---
 
+class: middle, inverse, center
+
+# Otros tipos de gráficos
+
+---
+
+## Más gráficos
+
+* Hemos visto los más comunes, pero hay muchos más:
+  
+   * Datos geoespaciales
+
+   * Gráficos cuantil-cuantil
+
+   * Gráficos mosaico
+
+   * Mapas en árbol
+
+   * Conjuntos paralelos
+
+   * etc.
+
+* Un buen directorio: [From Data to Viz](https://www.data-to-viz.com/)
+
+---
+
 ## Ratio datos-tinta
 
 * Concepto introducido por Edward Tufte en 1983
+
+* Sin importar el tipo de gráfico, tiene que ser estéticamente agradable para no distraer del mensaje a transmitir
 
 * Consiste en maximizar la proporción de los elementos estéticos del gráfico que se usan para visualizar datos
 
