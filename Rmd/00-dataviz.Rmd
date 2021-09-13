@@ -1594,6 +1594,38 @@ class: middle, inverse, center
 
 ---
 
+## Visualizaciones multi-figura
+
+Existen dos tipos principales:
+
+ - facetas: cada figura muestra un sub-conjunto de los datos, generalmente en una rejilla regular
+ 
+ - visualizaciones compuestas: distintas figuras que muestran distintos tipos de gráficos o incluso datos distintos
+
+
+![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/titanic-passenger-breakdown-1.png)
+---
+
+## Facetas
+
+![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/movie-rankings-1.png)
+---
+
+## Mal ejemplo
+
+En general, los ejes tienen que tener las mismas escalas, para que se puedan comparar de forma visual:
+
+![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/BA-degrees-variable-y-lims-1.png)
+
+
+## Figuras compuestas
+
+Importante usar un lenguaje visual consistente: fuentes, colores, símbolos, etc.
+
+![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/athletes-composite-good-1.png)
+
+---
+
 ## Ratio datos-tinta
 
 * Concepto introducido por Edward Tufte en 1983
