@@ -31,5 +31,5 @@ Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.p
 ## Recursos
 
   * [Practical ggplot2](https://wilkelab.org/practicalgg/)
-  * [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/data-viz-course-material.html)
+  * [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/course/datavizforstorytelling/)
   * [From Data to Viz](https://www.data-to-viz.com/)
