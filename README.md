@@ -33,3 +33,20 @@ Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.p
   * [Practical ggplot2](https://wilkelab.org/practicalgg/)
   * [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/course/datavizforstorytelling/)
   * [From Data to Viz](https://www.data-to-viz.com/)
+  * The Python Data Visualization Landscape. [2017](https://www.youtube.com/watch?v=FytuB8nFHPQ) and [2020](https://www.youtube.com/watch?v=35e0Chuxqi0)
+  * [Python tools for data visualization](https://pyviz.org/index.html)
+  * [Financial Times Visual Vocabulary](https://github.com/Financial-Times/chart-doctor/tree/main/visual-vocabulary)
+  * [Python tools for data visualization](https://pyviz.org/index.html)
+
+## Otros enlaces
+
+  * [Consejos para no dejarte engañar por un gráfico (como el de Pablo Casado)](https://verne.elpais.com/verne/2016/06/21/articulo/1466492891_470080.html)
+  * [El arte del dato bien contado](https://elartedeldato.com/)
+  * [What to consider when creating chloropleth maps](https://blog.datawrapper.de/choroplethmaps/)
+  
+## Galerías de ejemplos:
+
+  * [Matplotlib](https://matplotlib.org/stable/gallery/index.html)
+  * [Seaborn](https://seaborn.pydata.org/examples/index.html)
+  * [Plotly](https://plotly.com/python/)
+  * Dominic Royé. [Twitter](https://twitter.com/dr_xeo/media). [Blog](https://dominicroye.github.io/en/)

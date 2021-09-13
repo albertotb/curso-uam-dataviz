@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<html lang="" xml:lang="">
   <head>
     <title>Visualización de datos</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alberto Torres Barrán" />
-    <meta name="date" content="2020-02-29" />
+    <meta name="date" content="2021-09-13" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
   </head>
@@ -15,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Visualización de datos
 ## Explotación y visualización
 ### Alberto Torres Barrán
-### 2020-02-29
+### 2021-09-13
 
 ---
 
@@ -39,6 +40,69 @@ MathJax.Hub.Config({
 
 
 
+## Definición
+
+Visualizar: representar mediante imágenes ópticas fenómenos de otro carácter
+
+  - formar en la mente una imagen visual de un concepto abstracto
+  
+  - imaginar con rasgos visibles algo que no está a la vista
+  
+  - **hacer visible una imágen en un monitor**
+
+---
+
+## Objetivos
+
+1. Representación de datos que soporte el análisis visual, exploración y descubrimiento
+
+2. Transmitir información compleja de forma clara y eficaz, para comunicar los aspectos clave de forma intuitiva
+
+3. Asimilación rápida de informacion
+
+4. Hacer visibles patrones y fenómenos que no son accesibles de forma directa
+
+---
+
+## Importancia de la visualización
+
+Cuarteto de Anscombe
+
+.pull-left[
+![](../img/anscombe_data.png)
+]
+
+
+.pull-right[
+![](../img/anscombe_stats.png)
+]
+---
+
+![](../img/anscombe.png)
+
+Referencia: Anscombe, F. J. (1973). "Graphs in Statistical Analysis". American Statistician. 
+
+---
+
+class: center, middle
+
+![](../img/datasaurus.png)
+Referencia: [Justin Matejka, George Fitzmaurice. Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics through Simulated Annealing](https://www.autodesk.com/research/publications/same-stats-different-graphs)
+
+---
+
+## Importancia de la visualización
+
+- Comprensión: revelar patrones que no son evidentes a través del puro análisis numérico
+
+- Hace uso de las capacidades del sistema visual y el cerebro
+
+  - el cerebro es una máquina muy eficiente de detección de patrones y tendencias
+
+- Comunicación
+
+---
+
 ## Introducción
 
 * Visualizar datos es mitad ciencia mitad arte
@@ -49,7 +113,7 @@ MathJax.Hub.Config({
   
   2. es estéticamente agradable, sin elementos que distraigan del mensaje principal que queremos transmitir
   
-* Se han visto al menos dos herramientas para realizar gráficos: matplotlib y ggplot2
+* Librerías de visualización principales en Python/R: matplotlib y ggplot2
 
 * En esta sesión:
 
@@ -57,7 +121,9 @@ MathJax.Hub.Config({
 
   2. directorio con los tipos de gráficos más comunes (no todos!)
   
-  3. conceptos independientes de la herramienta concreta 
+  3. conceptos independientes de la herramienta concreta
+  
+  4. ejemplos en Python
 
 ---
 
@@ -1360,6 +1426,12 @@ class: middle, inverse, center
 
 ---
 
+class: middle, inverse, center
+
+# Conceptos de diseño de visualizaciones
+
+---
+
 ## Ratio datos-tinta
 
 * Concepto introducido por Edward Tufte en 1983
@@ -1373,9 +1445,290 @@ class: middle, inverse, center
 ]
 
 ---
-
 .center[
 ![](img/data-ink.gif)
+]
+
+---
+
+## Principio de "proportional ink"
+
+.content-box-green[
+El tamaño de las areas coloreadas en una visualización tiene que ser proporcional a los valores que representan
+]
+
+- En escalas lineales, los gráficos de barras siempre deben de empezar en 0
+
+- Hemos visto varios ejemplos, pero no solo ocurre con los gráficos de barras
+
+---
+
+.center[![](../img/elecciones_venezuela.png)]
+
+Fuente: Alberto Cairo. Graphics Lies, Misleading Visuals
+
+---
+
+## Elecciones de EEUU: cloropleth
+
+![](../img/us_election_cloropleth.png)
+---
+
+## Elecciones de EEUU: cartograma
+
+![](../img/us_election_cartogram.png)
+Fuente: [What’s Going On in This Graph? | 2020 Presidential Election Maps](https://www.nytimes.com/2020/11/19/learning/whats-going-on-in-this-graph-2020-presidential-election-maps.html)
+
+---
+
+## Elecciones de EEUU: mapa de densidad
+
+![](../img/us_election_density.jpg)
+---
+
+## Elecciones de EEUU: mapa dasimétrico
+
+![](../img/us_election_dasymetric.jpg)
+
+Fuente: Wired. [Is the US Leaning Red or Blue? It All Depends on Your Map](https://www.wired.com/story/is-us-leaning-red-or-blue-election-maps/)
+
+---
+
+## Visualizaciones en datasets muy grandes
+
+- Los gráficos de dispersión no funcionan excesivamente bien porque los puntos se solapan
+
+- El mismo problema puede ocurrir en datasets pequeños donde los datos tienen poca precisión o están redondeados
+
+---
+
+Ejemplo: hay 21 vehículos con un valor de *displacement* igual a 2, pero solo tienen 4 valores de *mpg* distintos (19, 20, 21, 22)
+
+.center[
+![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-solid-1.png)
+]
+
+---
+
+Para aliviar el problema, se pueden usar transparencias
+
+.center[
+![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-transp-1.png)
+]
+
+---
+
+## Ruido aleatorio
+
+- Otra opción es añadir un pequeño ruido aleatorio
+
+.center[![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-1.png)]
+
+---
+
+- Hay que tener cuidado con la cantidad de ruido, ya que estamos "falseando" los datos
+
+.center[![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-extreme-1.png)]
+
+---
+
+![](https://i.stack.imgur.com/0XsAD.png)
+
+---
+
+## Histogramas en 2D
+
+- Cuando hay demasiados puntos las transparencias (con o sin ruido) no son suficientes para solucionar el problema de solapamiento
+
+![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-points-1.png)
+
+---
+
+En esos casos, podemos hacer un histograma en 2D
+
+![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-2d-bins-1.png)
+
+---
+
+- También se pueden usar hexágonos en lugar de rectángulos
+
+ ![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-hex-bins-1.png)
+
+---
+
+## Curvas de nivel
+
+Otra alternativa es estimar la densidad de los puntos en 2D e unir regiones con diferente densidad usando curvas de nivel
+
+![](https://pybonacci.org/wp-content/uploads/2020/04/2012041300006_ww_i1x0w006.gif)
+---
+
+.pull-left[
+![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/blue-jays-contour-1.png)
+]
+
+.pull-right[
+![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/blue-jays-contour-filled-1.png)
+]
+
+Los colores oscuros representan areas de mayor densidad
+
+---
+
+## Contar una historia
+
+- Principal objetivo de las visualizaciones: comunicación
+
+- Para transmitir la información extraida de los datos de forma efectiva, tenemos que contarla de forma **clara** e **interesante**
+
+- No se trata de inventar datos, las visualizaciones tienen que respetar todas las normas vistas anteriormente
+
+   - A menudo hay varias formas de representar los mismos datos
+
+- Objetivo: usar hecho y razonamientos lógicos para que la audiencia se interese por la información que se está transmitiendo
+
+---
+
+## ¿Qué es una historia?
+
+- Conjunto de observaciones, hechos o eventos (ciertos o inventados) que se presentan en un orden específico para crear una reacción emocional en la audiencia
+
+- Existen múltiples estructuras para contar historias, por ejemplo:
+
+  - Introducción - Problema - Acción - Desenlace
+  
+  - Desenlace - Desarrollo
+
+- En general es complicado contar una historia con una única figura
+
+- El número de figuras por historia depende del tipo. Algunas guias:
+
+  - Artículo para un blog: 1 figura
+  
+  - Artículo científico: entre 3 y 6 figuras
+  
+  - Presentación larga (+1h): contar más de una historia, cada una con entre 3-6 figuras
+
+---
+
+- Crecimiento exponencial del número de artículos enviados a arxiv-bio entre 2007 y 2013
+
+- ¿Qué pasó en 2013?
+
+.pull-left[
+![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/q-bio-monthly-growth-1.png)
+]
+
+--
+
+- La creación de bioRxiv por parte de CSHL Press atrajo la mayor parte de los preprints
+
+.pull-right[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/q-bio-bioRxiv-monthly-growth-1.png)]
+
+---
+
+## Estrategias
+
+1. Figuras sencillas, fácilmente entendibles por el público general
+
+2. Dividir visualizaciones complejas en múltiples figuras
+
+3. Realizar visualizaciones memorables
+
+4. Ser consistente pero no repetitivo
+
+---
+
+## Figuras sencillas
+
+- Dos hipótesis que no se suelen cumplir sobre la audiencia:
+
+  1. Capaz de procesar figuras excesivamente complicadas
+  
+  2. Capaz de entender las conclusiones de la visualización de forma inmediata
+  
+- En general, menos es más
+
+- Eliminar todas las características que no sean imprescindibles para la conclusión que queremos resaltar
+
+- Cuidado!
+  - Las librerías de visualización modernas permiten hacer figuras complejas de forma relativamente sencilla
+  - Una visualización puede ser estéticamente muy agradable pero no transmitir ningún mensaje claro
+
+---
+
+## Vuelos desde/hasta NYC en 2013
+
+Demasiada información:
+  - Delta y American son las aerolíneas con menos retrasos a la llegada
+  - El retraso medio disminuye con la longitud del vuelo en general, pero no para American
+  - Delta y American tienen un % importante de los vuelos que salen de NYC
+
+
+![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/arrival-delay-vs-distance-1.png)
+
+---
+
+.pull-left[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/mean-arrival-delay-nyc-1.png)
+
+.pull-right[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/number-of-flights-nyc-1.png)]
+
+---
+
+## Dividir visualizaciones complejas
+
+- En ocasiones queremos mostrar mucha información relacionada dentro de la misma visualización
+
+- En esos casos es útil enseñar y describir primero una versión simplificada
+
+- Esto es especialmente útil cuando la visualización está compuesta de muchas figuras similares (facetas) que se repiten para distintos subgrupos
+
+![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/united-departures-weekdays-1.png)
+
+---
+
+![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/all-departures-weekdays-1.png)
+
+---
+
+## Visualizaciones memorables
+
+- Las figuras simples y claras:
+  
+  - son más sencillas de entender
+  
+  - pero pueden parecer genéricas, haciendo que sea más complicado recordarlas
+  
+- Es un equilibrio complicado
+
+- En general, intentar evitar repetir el mismo tipo de visualización para distintos análisis
+
+- Este problema es habitual cuando usamos múltiples visualizaciones para contar una historia
+
+---
+
+![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/athletes-composite-repetitive-1.png)
+
+---
+
+.pull-left[
+![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/tech-stocks-repetitive-1.png)
+]
+
+.pull-right[
+![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/tech-stocks-diverse-1.png)
+]
+
+---
+
+class: center, middle, inverse
+
+# Librerías de visualización en Python
+
+---
+
+.center[
+![](../img/python_visualization_landscape.png)
 ]
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
@@ -1425,6 +1778,32 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
     deleted = true;
   });
 })();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
 // adds .remark-code-has-line-highlighted class to <pre> parent elements
 // of code chunks containing highlighted lines with class .remark-code-line-highlighted
 (function(d) {
@@ -1442,17 +1821,6 @@ if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   }
   preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
 })(document);</script>
-
-<script>
-(function() {
-  var links = document.getElementsByTagName('a');
-  for (var i = 0; i < links.length; i++) {
-    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
-      links[i].target = '_blank';
-    }
-  }
-})();
-</script>
 
 <script>
 slideshow._releaseMath = function(el) {
