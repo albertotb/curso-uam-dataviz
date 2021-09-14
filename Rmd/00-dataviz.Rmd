@@ -257,6 +257,26 @@ Fuente: [AEMET](http://www.aemet.es/es/eltiempo/observacion/ultimosdatos)
 
 ---
 
+## Codificaciones visuales
+
+.center[
+![:scale 80%](../img/visual_encoding.png)
+]
+
+.footnotesize[Fuente: Alberto Cairo. [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/course/datavizforstorytelling/)]
+
+---
+
+## Jerarquia de codificaciones
+
+.center[
+![:scale 80%](../img/encoding_hierarchy.png)
+]
+
+.footnotesize[Fuente: Alberto Cairo. [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/course/datavizforstorytelling/)]
+
+---
+
 ## Escalas
 
 * Definen la equivalencia entre valores y elementos del gráfico
@@ -1602,21 +1622,27 @@ Existen dos tipos principales:
  
  - visualizaciones compuestas: distintas figuras que muestran distintos tipos de gráficos o incluso datos distintos
 
+.center[
+![:scale 60%](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/titanic-passenger-breakdown-1.png)
+]
 
-![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/titanic-passenger-breakdown-1.png)
 ---
 
 ## Facetas
 
-![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/movie-rankings-1.png)
+.center[
+![:scale 80%](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/movie-rankings-1.png)
+]
+
 ---
 
 ## Mal ejemplo
 
 En general, los ejes tienen que tener las mismas escalas, para que se puedan comparar de forma visual:
 
-![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/BA-degrees-variable-y-lims-1.png)
-
+.center[
+![:scale 80%](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/BA-degrees-variable-y-lims-1.png)
+]
 
 ## Figuras compuestas
 
@@ -1657,32 +1683,41 @@ El tamaño de las areas coloreadas en una visualización tiene que ser proporcio
 
 ---
 
-.center[![](../img/elecciones_venezuela.png)]
+.center[![:scale 80%](../img/elecciones_venezuela.png)]
 
-Fuente: Alberto Cairo. Graphics Lies, Misleading Visuals
+Fuente: Alberto Cairo. [Graphics Lies, Misleading Visuals](https://journalismcourses.org/wp-content/uploads/2020/07/Misleading-Visuals.pdf)
 
 ---
 
 ## Elecciones de EEUU: cloropleth
 
-![](../img/us_election_cloropleth.png)
+.center[
+![:scale 80%](../img/us_election_cloropleth.png)
+]
 ---
 
 ## Elecciones de EEUU: cartograma
 
-![](../img/us_election_cartogram.png)
+.center[
+![:scale 80%](../img/us_election_cartogram.png)
+]
 Fuente: [What’s Going On in This Graph? | 2020 Presidential Election Maps](https://www.nytimes.com/2020/11/19/learning/whats-going-on-in-this-graph-2020-presidential-election-maps.html)
 
 ---
 
 ## Elecciones de EEUU: mapa de densidad (burbujas)
 
-![](../img/us_election_density.jpg)
+.center[
+![:scale 70%](../img/us_election_density.jpg)
+]
+
 ---
 
 ## Elecciones de EEUU: mapa dasimétrico
 
+.center[
 ![](../img/us_election_dasymetric.jpg)
+]
 
 Fuente: Wired. [Is the US Leaning Red or Blue? It All Depends on Your Map](https://www.wired.com/story/is-us-leaning-red-or-blue-election-maps/)
 
@@ -1696,18 +1731,20 @@ Fuente: Wired. [Is the US Leaning Red or Blue? It All Depends on Your Map](https
 
 ---
 
-Ejemplo: hay 21 vehículos con un valor de *displacement* igual a 2, pero solo tienen 4 valores de *mpg* distintos (19, 20, 21, 22)
+class: middle
 
 .center[
-![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-solid-1.png)
+![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-solid-1.png)
 ]
+
+Ejemplo: hay 21 vehículos con un valor de *displacement* igual a 2, pero solo tienen 4 valores de *mpg* distintos (19, 20, 21, 22)
 
 ---
 
 Para aliviar el problema, se pueden usar transparencias
 
 .center[
-![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-transp-1.png)
+![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-transp-1.png)
 ]
 
 ---
@@ -1716,15 +1753,17 @@ Para aliviar el problema, se pueden usar transparencias
 
 - Otra opción es añadir un pequeño ruido aleatorio
 
-.center[![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-1.png)]
+.center[![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-1.png)]
 
 ---
 
 - Hay que tener cuidado con la cantidad de ruido, ya que estamos "falseando" los datos
 
-.center[![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-extreme-1.png)]
+.center[![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-extreme-1.png)]
 
 ---
+
+class: center, middle
 
 ![](https://i.stack.imgur.com/0XsAD.png)
 
@@ -1734,27 +1773,34 @@ Para aliviar el problema, se pueden usar transparencias
 
 - Cuando hay demasiados puntos las transparencias (con o sin ruido) no son suficientes para solucionar el problema de solapamiento
 
-![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-points-1.png)
+.center[
+![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-points-1.png)
+]
 
 ---
 
 En esos casos, podemos hacer un histograma en 2D
 
-![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-2d-bins-1.png)
+.center[
+![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-2d-bins-1.png)
+]
 
 ---
 
 - También se pueden usar hexágonos en lugar de rectángulos
 
- ![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-hex-bins-1.png)
-
+.center[
+ ![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-hex-bins-1.png)
+]
 ---
 
 ## Curvas de nivel
 
 Otra alternativa es estimar la densidad de los puntos en 2D e unir regiones con diferente densidad usando curvas de nivel
 
+.center[
 ![](https://pybonacci.org/wp-content/uploads/2020/04/2012041300006_ww_i1x0w006.gif)
+]
 ---
 
 .pull-left[
@@ -1805,19 +1851,26 @@ Los colores oscuros representan areas de mayor densidad
 
 ---
 
+class: middle
+
+.pull-left[
 - Crecimiento exponencial del número de artículos enviados a arxiv-bio entre 2007 y 2013
 
 - ¿Qué pasó en 2013?
+]
 
-.pull-left[
+.pull-right[
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/q-bio-monthly-growth-1.png)
 ]
 
 --
 
+.pull-left[
 - La creación de bioRxiv por parte de CSHL Press atrajo la mayor parte de los preprints
+]
 
 .pull-right[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/q-bio-bioRxiv-monthly-growth-1.png)]
+
 
 ---
 
@@ -1859,11 +1912,13 @@ Demasiada información:
   - Delta y American tienen un % importante de los vuelos que salen de NYC
 
 
-![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/arrival-delay-vs-distance-1.png)
+![:scale 60%](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/arrival-delay-vs-distance-1.png)
 
 ---
 
-.pull-left[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/mean-arrival-delay-nyc-1.png)
+class: middle, center
+
+.pull-left[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/mean-arrival-delay-nyc-1.png)]
 
 .pull-right[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/number-of-flights-nyc-1.png)]
 
@@ -1877,9 +1932,13 @@ Demasiada información:
 
 - Esto es especialmente útil cuando la visualización está compuesta de muchas figuras similares (facetas) que se repiten para distintos subgrupos
 
-![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/united-departures-weekdays-1.png)
+.center[
+![:scale 40%](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/united-departures-weekdays-1.png)
+]
 
 ---
+
+class: center, middle
 
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/all-departures-weekdays-1.png)
 
@@ -1901,9 +1960,13 @@ Demasiada información:
 
 ---
 
+class: center, middle
+
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/athletes-composite-repetitive-1.png)
 
 ---
+
+class: center, middle
 
 .pull-left[
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/tech-stocks-repetitive-1.png)
@@ -1920,6 +1983,8 @@ class: center, middle, inverse
 # Librerías de visualización en Python
 
 ---
+
+class: middle
 
 .center[
 ![](../img/python_visualization_landscape.png)

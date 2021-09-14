@@ -4,7 +4,7 @@
     <title>Visualización de datos</title>
     <meta charset="utf-8" />
     <meta name="author" content="Alberto Torres Barrán" />
-    <meta name="date" content="2021-09-13" />
+    <meta name="date" content="2021-09-14" />
     <script src="libs/header-attrs-2.10/header-attrs.js"></script>
     <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
     <link rel="stylesheet" href="custom.css" type="text/css" />
@@ -16,7 +16,7 @@ class: center, middle, inverse, title-slide
 # Visualización de datos
 ## Explotación y visualización
 ### Alberto Torres Barrán
-### 2021-09-13
+### 2021-09-14
 
 ---
 
@@ -39,6 +39,74 @@ MathJax.Hub.Config({
 
 
 
+
+
+## Introducción
+
+* Visualizar datos es mitad ciencia mitad arte
+
+* Una buena visualización:
+
+  1. representa los datos de forma correcta
+  
+  2. es estéticamente agradable, sin elementos que distraigan del mensaje principal que queremos transmitir
+  
+* Librerías de visualización principales en Python/R: matplotlib y ggplot2
+
+* En esta sesión:
+
+  1. como pasar de los datos al tipo de gráfico más adecuado
+
+  2. directorio con los tipos de gráficos más comunes (no todos!)
+  
+  3. conceptos independientes de la herramienta concreta
+  
+  4. ejemplos en Python
+
+---
+
+## Gramática de gráficos
+
+* Descripción precisa de todos los componentes necesarios para realizar una visualización 
+
+  * Wilkinson, L. (2005), *The Grammar of Graphics*
+
+* Una de las implementaciones más conocidas es la librería `ggplot2`:
+
+    * Wickham, H. (2009), [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/)
+
+* Artículo con las implicaciones de trasladar los conceptos de la gramática de gráficos a un lenguaje de programación (R):
+
+    * Wickham, H. (2010), [*A Layered Grammar of Graphics*](https://vita.had.co.nz/papers/layered-grammar.pdf)
+
+
+---
+
+## Fundamentos de visualización de datos
+
+* Wilke, C. O., (2019) [Fundamentals of data visualization](https://serialmentor.com/dataviz/)
+
+* Guía moderna para realizar visualizaciones que:
+
+  1. reflejan los datos de forma precisa
+  
+  2. cuentan una historia
+  
+  3. tienen una estética profesional
+  
+* Conceptos independientes de la herramienta que se usa!
+
+* Los ejemplos del libro están hechos con `ggplot2` y otras librerías auxiliares
+
+* Referencia principal de esta sesión (material en [Github](http://albertotb.com/curso-uam-dataviz/))
+
+---
+
+class: inverse, center, middle
+
+# Introducción a la visualización
+
+---
 
 ## Definición
 
@@ -103,64 +171,21 @@ Referencia: [Justin Matejka, George Fitzmaurice. Same Stats, Different Graphs: G
 
 ---
 
-## Introducción
+## Tipos de visualizaciones
 
-* Visualizar datos es mitad ciencia mitad arte
-
-* Una buena visualización:
-
-  1. representa los datos de forma correcta
+- **Explorativas**: el objetivo es entender el contenido de un conjunto de datos no conocido, transformando los datos en características visuales para poder identificar sus características principales
   
-  2. es estéticamente agradable, sin elementos que distraigan del mensaje principal que queremos transmitir
+  - muchos tipos de gráficos sencillos, para evitar perder información potencialmente relevante
+
+- **Explicativas**: una vez que descubrimos el patrón en los datos en el que nos queremos centrar y vamos a crear un gráfico para explicárselo a otras personas
+
+  - decidir que mantener y que eliminar para el objetivo concreto
   
-* Librerías de visualización principales en Python/R: matplotlib y ggplot2
-
-* En esta sesión:
-
-  1. como pasar de los datos al tipo de gráfico más adecuado
-
-  2. directorio con los tipos de gráficos más comunes (no todos!)
-  
-  3. conceptos independientes de la herramienta concreta
-  
-  4. ejemplos en Python
-
----
-
-## Gramática de gráficos
-
-* Descripción precisa de todos los componentes necesarios para realizar una visualización 
-
-  * Wilkinson, L. (2005), *The Grammar of Graphics*
-
-* Una de las implementaciones más conocidas es la librería `ggplot2`:
-
-    * Wickham, H. (2009), [*ggplot2: Elegant Graphics for Data Analysis*](https://ggplot2-book.org/)
-
-* Artículo con las implicaciones de trasladar los conceptos de la gramática de gráficos a un lenguaje de programación (R):
-
-    * Wickham, H. (2010), [*A Layered Grammar of Graphics*](https://vita.had.co.nz/papers/layered-grammar.pdf)
+  - optimizar el gráfico para ser enseñado, evitando distracciones
 
 
----
+- Importante destacar que explicar algo con un gráfico no confirma necesariamente una [hipótesis](https://r4ds.had.co.nz/introduction.html#hypothesis-confirmation) (en general son necesarios modelos matemáticos para eso)
 
-## Fundamentos de visualización de datos
-
-* Wilke, C. O., (2019) [Fundamentals of data visualization](https://serialmentor.com/dataviz/)
-
-* Guía moderna para realizar visualizaciones que:
-
-  1. reflejan los datos de forma precisa
-  
-  2. cuentan una historia
-  
-  3. tienen una estética profesional
-  
-* Conceptos independientes de la herramienta que se usa!
-
-* Los ejemplos del libro están hechos con `ggplot2` y otras librerías auxiliares
-
-* Referencia principal de esta sesión (material en [Github](http://albertotb.com/curso-uam-dataviz/))
 
 ---
 
@@ -312,6 +337,26 @@ class: inverse, center, middle
 .center[
 Fuente: [AEMET](http://www.aemet.es/es/eltiempo/observacion/ultimosdatos)
 ]
+
+---
+
+## Codificaciones visuales
+
+.center[
+![:scale 80%](../img/visual_encoding.png)
+]
+
+.footnotesize[Fuente: Alberto Cairo. [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/course/datavizforstorytelling/)]
+
+---
+
+## Jerarquia de codificaciones
+
+.center[
+![:scale 80%](../img/encoding_hierarchy.png)
+]
+
+.footnotesize[Fuente: Alberto Cairo. [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/course/datavizforstorytelling/)]
 
 ---
 
@@ -1432,6 +1477,44 @@ class: middle, inverse, center
 
 ---
 
+## Visualizaciones multi-figura
+
+Existen dos tipos principales:
+
+ - facetas: cada figura muestra un sub-conjunto de los datos, generalmente en una rejilla regular
+ 
+ - visualizaciones compuestas: distintas figuras que muestran distintos tipos de gráficos o incluso datos distintos
+
+.center[
+![:scale 60%](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/titanic-passenger-breakdown-1.png)
+]
+
+---
+
+## Facetas
+
+.center[
+![:scale 80%](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/movie-rankings-1.png)
+]
+
+---
+
+## Mal ejemplo
+
+En general, los ejes tienen que tener las mismas escalas, para que se puedan comparar de forma visual:
+
+.center[
+![:scale 80%](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/BA-degrees-variable-y-lims-1.png)
+]
+
+## Figuras compuestas
+
+Importante usar un lenguaje visual consistente: fuentes, colores, símbolos, etc.
+
+![](https://clauswilke.com/dataviz/multi-panel_figures_files/figure-html/athletes-composite-good-1.png)
+
+---
+
 ## Ratio datos-tinta
 
 * Concepto introducido por Edward Tufte en 1983
@@ -1463,32 +1546,41 @@ El tamaño de las areas coloreadas en una visualización tiene que ser proporcio
 
 ---
 
-.center[![](../img/elecciones_venezuela.png)]
+.center[![:scale 80%](../img/elecciones_venezuela.png)]
 
-Fuente: Alberto Cairo. Graphics Lies, Misleading Visuals
+Fuente: Alberto Cairo. [Graphics Lies, Misleading Visuals](https://journalismcourses.org/wp-content/uploads/2020/07/Misleading-Visuals.pdf)
 
 ---
 
 ## Elecciones de EEUU: cloropleth
 
-![](../img/us_election_cloropleth.png)
+.center[
+![:scale 80%](../img/us_election_cloropleth.png)
+]
 ---
 
 ## Elecciones de EEUU: cartograma
 
-![](../img/us_election_cartogram.png)
+.center[
+![:scale 80%](../img/us_election_cartogram.png)
+]
 Fuente: [What’s Going On in This Graph? | 2020 Presidential Election Maps](https://www.nytimes.com/2020/11/19/learning/whats-going-on-in-this-graph-2020-presidential-election-maps.html)
 
 ---
 
-## Elecciones de EEUU: mapa de densidad
+## Elecciones de EEUU: mapa de densidad (burbujas)
 
-![](../img/us_election_density.jpg)
+.center[
+![:scale 70%](../img/us_election_density.jpg)
+]
+
 ---
 
 ## Elecciones de EEUU: mapa dasimétrico
 
+.center[
 ![](../img/us_election_dasymetric.jpg)
+]
 
 Fuente: Wired. [Is the US Leaning Red or Blue? It All Depends on Your Map](https://www.wired.com/story/is-us-leaning-red-or-blue-election-maps/)
 
@@ -1502,18 +1594,20 @@ Fuente: Wired. [Is the US Leaning Red or Blue? It All Depends on Your Map](https
 
 ---
 
-Ejemplo: hay 21 vehículos con un valor de *displacement* igual a 2, pero solo tienen 4 valores de *mpg* distintos (19, 20, 21, 22)
+class: middle
 
 .center[
-![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-solid-1.png)
+![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-solid-1.png)
 ]
+
+Ejemplo: hay 21 vehículos con un valor de *displacement* igual a 2, pero solo tienen 4 valores de *mpg* distintos (19, 20, 21, 22)
 
 ---
 
 Para aliviar el problema, se pueden usar transparencias
 
 .center[
-![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-transp-1.png)
+![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-transp-1.png)
 ]
 
 ---
@@ -1522,15 +1616,17 @@ Para aliviar el problema, se pueden usar transparencias
 
 - Otra opción es añadir un pequeño ruido aleatorio
 
-.center[![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-1.png)]
+.center[![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-1.png)]
 
 ---
 
 - Hay que tener cuidado con la cantidad de ruido, ya que estamos "falseando" los datos
 
-.center[![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-extreme-1.png)]
+.center[![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/mpg-cty-displ-jitter-extreme-1.png)]
 
 ---
+
+class: center, middle
 
 ![](https://i.stack.imgur.com/0XsAD.png)
 
@@ -1540,27 +1636,34 @@ Para aliviar el problema, se pueden usar transparencias
 
 - Cuando hay demasiados puntos las transparencias (con o sin ruido) no son suficientes para solucionar el problema de solapamiento
 
-![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-points-1.png)
+.center[
+![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-points-1.png)
+]
 
 ---
 
 En esos casos, podemos hacer un histograma en 2D
 
-![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-2d-bins-1.png)
+.center[
+![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-2d-bins-1.png)
+]
 
 ---
 
 - También se pueden usar hexágonos en lugar de rectángulos
 
- ![](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-hex-bins-1.png)
-
+.center[
+ ![:scale 70%](https://clauswilke.com/dataviz/overlapping_points_files/figure-html/nycflights-hex-bins-1.png)
+]
 ---
 
 ## Curvas de nivel
 
 Otra alternativa es estimar la densidad de los puntos en 2D e unir regiones con diferente densidad usando curvas de nivel
 
+.center[
 ![](https://pybonacci.org/wp-content/uploads/2020/04/2012041300006_ww_i1x0w006.gif)
+]
 ---
 
 .pull-left[
@@ -1611,19 +1714,26 @@ Los colores oscuros representan areas de mayor densidad
 
 ---
 
+class: middle
+
+.pull-left[
 - Crecimiento exponencial del número de artículos enviados a arxiv-bio entre 2007 y 2013
 
 - ¿Qué pasó en 2013?
+]
 
-.pull-left[
+.pull-right[
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/q-bio-monthly-growth-1.png)
 ]
 
 --
 
+.pull-left[
 - La creación de bioRxiv por parte de CSHL Press atrajo la mayor parte de los preprints
+]
 
 .pull-right[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/q-bio-bioRxiv-monthly-growth-1.png)]
+
 
 ---
 
@@ -1665,11 +1775,13 @@ Demasiada información:
   - Delta y American tienen un % importante de los vuelos que salen de NYC
 
 
-![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/arrival-delay-vs-distance-1.png)
+![:scale 60%](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/arrival-delay-vs-distance-1.png)
 
 ---
 
-.pull-left[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/mean-arrival-delay-nyc-1.png)
+class: middle, center
+
+.pull-left[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/mean-arrival-delay-nyc-1.png)]
 
 .pull-right[![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/number-of-flights-nyc-1.png)]
 
@@ -1683,9 +1795,13 @@ Demasiada información:
 
 - Esto es especialmente útil cuando la visualización está compuesta de muchas figuras similares (facetas) que se repiten para distintos subgrupos
 
-![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/united-departures-weekdays-1.png)
+.center[
+![:scale 40%](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/united-departures-weekdays-1.png)
+]
 
 ---
+
+class: center, middle
 
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/all-departures-weekdays-1.png)
 
@@ -1707,9 +1823,13 @@ Demasiada información:
 
 ---
 
+class: center, middle
+
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/athletes-composite-repetitive-1.png)
 
 ---
+
+class: center, middle
 
 .pull-left[
 ![](https://clauswilke.com/dataviz/telling_a_story_files/figure-html/tech-stocks-repetitive-1.png)
@@ -1726,6 +1846,8 @@ class: center, middle, inverse
 # Librerías de visualización en Python
 
 ---
+
+class: middle
 
 .center[
 ![](../img/python_visualization_landscape.png)
