@@ -33,3 +33,4 @@ Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.p
   * [Practical ggplot2](https://wilkelab.org/practicalgg/)
   * [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/course/datavizforstorytelling/)
   * [From Data to Viz](https://www.data-to-viz.com/)
+  * [Como elegir el gráfico correcto para visualizar datos abiertos](https://datos.gob.es/es/blog/como-elegir-el-grafico-correcto-para-visualizar-datos-abiertos)
