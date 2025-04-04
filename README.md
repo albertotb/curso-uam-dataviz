@@ -34,3 +34,10 @@ Presentación [[HTML](./Rmd/00-dataviz.html)] [[PDF](./pdf/visualizacion_datos.p
   * [Data Visualization for Storytelling and Discovery](https://journalismcourses.org/course/datavizforstorytelling/)
   * [From Data to Viz](https://www.data-to-viz.com/)
   * [Como elegir el gráfico correcto para visualizar datos abiertos](https://datos.gob.es/es/blog/como-elegir-el-grafico-correcto-para-visualizar-datos-abiertos)
+
+## Malas visualizaciones
+
+- https://venngage.com/blog/misleading-graphs/
+- https://www.losreplicantes.com/articulos/graficos-electorales-manipulados-grandes-medios/
+- https://cadenaser.com/ser/2015/12/01/television/1448991820_854349.html
+- https://www.elblogsalmon.com/entorno/5-formas-de-deformar-un-grafico-que-ya-no-cuelan-en-las-redes-sociales
